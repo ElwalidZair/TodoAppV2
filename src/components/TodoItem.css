@@ -1,0 +1,28 @@
+.list{
+    color: aliceblue;
+    background-color: #2f2fa2;
+    margin: 20px;
+    border-radius: 12px;
+    height: 50px;
+}
+
+.list p{
+    padding:10px;
+    position: relative;
+}
+
+.list p span{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.list p input{
+    background-color: transparent;
+    border:0;
+}
+
+.list p input:focus{
+    outline: none;
+}
