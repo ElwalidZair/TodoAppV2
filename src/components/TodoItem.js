@@ -1,13 +1,13 @@
-import React from 'react';
+/*import React from 'react';
 import './TodoItem.css';
 import {AiFillDelete} from 'react-icons/ai'; 
 import axios from 'axios';
 
-class TodoItem extends React.Component {
+export default function TodoItem() {
 
-  url = "http://localhost:8080/Tasks";
+  const url = "http://localhost:8080/Tasks";
 
-  deleteTodo = key => {
+  const deleteTodo = key => {
     axios.delete(`${this.url}/${key}`)
     .then(()=>{
         const filteredTodos = this.state.todos.filter(todo => 
@@ -19,7 +19,7 @@ class TodoItem extends React.Component {
     })
   };
 
-  updateTodo = (task, key) => {
+  const updateTodo = (task, key) => {
     const todos = this.state.todos;
     todos.map(todo=>{
       if(todo.key === key){
@@ -35,22 +35,19 @@ class TodoItem extends React.Component {
     })
   };
 
-  render(){
-    return todos.map(todo => 
+  
+  return todos.map(todo => 
             <div className="list" key ={todo.key}>
                    <p>
                        <input type = "text"
                               id={todo.key} 
                               value = {todo.text}
-                              onChange = {(e)=>{ this.updateTodo(e.target.value,todo.key)}}
+                              onChange = {(e)=>{ updateTodo(e.target.value,todo.key)}}
                        />
                        <span>
-                           <AiFillDelete onClick={() => this.deleteTodo(todo.key)} className="delete-icon"/>
+                           <AiFillDelete onClick={() => deleteTodo(todo.key)} className="delete-icon"/>
                        </span>
                    </p>
             </div>
-     );
-  }
-}
-
-export default TodoItem;
+     ); 
+}*/
