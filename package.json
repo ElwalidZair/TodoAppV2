@@ -1,5 +1,5 @@
 {
-  "homepage":"https://github.com/ElwalidZair/TodoAppV2",
+  "homepage": "https://github.com/ElwalidZair/TodoAppV2",
   "name": "todolistapp",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "eslint": "^7.25.0",
+    "json-server": "^0.16.3",
     "prettier": "^2.2.1",
     "prettier-eslint": "^12.0.0",
     "react": "^17.0.2",

@@ -1,59 +1,45 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 
-export default class TodoForm extends Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-          todos:[],
-          currentTodo:{
-            text:"",
-            key:""
-          }
-        }
-        this.handleInput = this.handleInput.bind(this);
-        this.addTodo = this.addTodo.bind(this);
-    };
+const TodoForm = ({todos, setTodos}) => {
+    const [currentTodo, setCurrentTodo] = useState({
+      text:"",
+      id:""
+    });
 
-    url = "http://localhost:8080/Tasks";
+    const url = "http://localhost:8080/Tasks";
 
-    handleInput = e => { 
-        this.setState({
-          currentTodo:{
+    const handleInput = e => { 
+        setCurrentTodo({
             text:e.target.value, 
-            key:Date.now()
-          }
+            id:Math.floor(Math.random() * 50000)
         }
     )};
     
-    addTodo = e => { 
+    const addTodo = e => { 
         e.preventDefault();
-        const newTodo = this.state.currentTodo;
+        const newTodo = currentTodo;
         if(newTodo.text !== ""){
-          const newTodos = [...this.state.todos, newTodo];
+          const newTodos = [...todos, newTodo];
           console.log(newTodos);
-          axios.post(this.url,{
+          axios.post(url,{
             task:newTodo.text,
-            id:newTodo.key
+            id:newTodo.id
           });
-          this.setState(
-            {
-              todos:newTodos,
-              currentTodo:{
+          setTodos(newTodos);
+          setCurrentTodo({
                 text:"",
                 key:""
-              }
-            }
-          )
+          })
         };
     };
 
-    render() {
-        return ( 
-            <form id = "todoForm" onSubmit = {this.addTodo}>
-                <input type = "text" placeholder = "Enter task ..." value = {this.state.currentTodo.text} onChange = {this.handleInput} />
-                <button type = "submit">Add</button>
-            </form>
-        )
-    }
+    return ( 
+        <form id = "todoForm" onSubmit = {addTodo}>
+            <input type = "text" placeholder = "Enter task ..." value = {currentTodo.text} onChange = {handleInput} />
+            <button type = "submit">Add</button>
+        </form>
+    )
 }
+
+export default TodoForm;

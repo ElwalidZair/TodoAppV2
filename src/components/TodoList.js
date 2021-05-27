@@ -1,19 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TodoItem from './TodoItem';
-import axios from 'axios';
 import TodoForm from './TodoForm';
 
-class TodoList extends React.Component{
-
-
-  render(){
+const TodoList = () => {
+    const [todos,setTodos] = useState([])
     return (
       <div className = "app">
-        <TodoForm /> 
-        <TodoItem />
+        <TodoForm todos = {todos} setTodos = {setTodos} />
+        {
+          todos.map((todo)=>
+            <TodoItem  key={todo.id} todo = {todo} todos = {todos} setTodos = {setTodos}/>
+          )
+        }
+        
       </div>
     );
-  }
 };
 
 export default TodoList;

@@ -3,54 +3,46 @@ import './TodoItem.css';
 import {AiFillDelete} from 'react-icons/ai'; 
 import axios from 'axios';
 
-class TodoItem extends React.Component {
+const TodoItem = ({todo, todos, setTodos}) => {
 
-  url = "http://localhost:8080/Tasks";
+  const url = "http://localhost:8080/Tasks";
 
-  deleteTodo = key => {
-    axios.delete(`${this.url}/${key}`)
+  const deleteTodo = id => {
+    axios.delete(`${url}/${id}`)
     .then(()=>{
-        const filteredTodos = this.state.todos.filter(todo => 
-        todo.key!==key
+        const filteredTodos = todos.filter(todo => 
+        todo.id!==id
      );
-      this.setState({
-        todos: filteredTodos
-      });
+      setTodos(filteredTodos);
     })
   };
 
-  updateTodo = (task, key) => {
-    const todos = this.state.todos;
+  const updateTodo = (task, id) => {
     todos.map(todo=>{
-      if(todo.key === key){
+      if(todo.id === id){
         todo.text = task;
       }
     });
-      this.setState({
-        todos:todos
-      })
-    axios.put(`${this.url}/${key}`, todos)
+    setTodos(todos);
+    axios.put(`${url}/${id}`, todos)
     .then((res)=>{
       console.log(res);
     })
   };
-
-  render(){
-    return todos.map(todo => 
-            <div className="list" key ={todo.key}>
+//use ids
+  return  (
+            <div className="list" > 
                    <p>
-                       <input type = "text"
-                              id={todo.key} 
-                              value = {todo.text}
-                              onChange = {(e)=>{ this.updateTodo(e.target.value,todo.key)}}
+                       <input
+                              type = "text"
+                              defaultValue = {todo.text}
+                              onChange = {(e)=>{ updateTodo(e.target.value,todo.id)}}
                        />
                        <span>
-                           <AiFillDelete onClick={() => this.deleteTodo(todo.key)} className="delete-icon"/>
+                           <AiFillDelete onClick={() => deleteTodo(todo.id)} className="delete-icon"/>
                        </span>
                    </p>
             </div>
-     );
-  }
+  );
 }
-
 export default TodoItem;
