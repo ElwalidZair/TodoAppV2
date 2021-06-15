@@ -1,21 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './TodoItem.css';
 import {AiFillDelete} from 'react-icons/ai'; 
 import axios from 'axios';
 
-const TodoItem = ({todo, todos, setTodos}) => {
+const TodoItem = ({todo, todos, setTodos,setShowModal, passTodo}) => {
+
+  const [isChecked, setIsChecked] = useState(false);
 
   const url = "http://localhost:8080/Tasks";
 
-  const deleteTodo = id => {
-    axios.delete(`${url}/${id}`)
-    .then(()=>{
-        const filteredTodos = todos.filter(todo => 
-        todo.id!==id
-     );
-      setTodos(filteredTodos);
-    })
-  };
+
+  const onDeleteIcon = () => {
+    setShowModal(true);
+    passTodo(todo);
+  }
+
 
   const updateTodo = (task, id) => {
     todos.map(todo=>{
@@ -29,17 +28,18 @@ const TodoItem = ({todo, todos, setTodos}) => {
       console.log(res);
     })
   };
-//use ids
+
   return  (
             <div className="list" > 
                    <p>
                        <input
                               type = "text"
-                              defaultValue = {todo.text}
+                              defaultValue = {todo.task}
                               onChange = {(e)=>{ updateTodo(e.target.value,todo.id)}}
                        />
                        <span>
-                           <AiFillDelete onClick={() => deleteTodo(todo.id)} className="delete-icon"/>
+                           <input type="checkbox" />
+                           <AiFillDelete onClick={() => onDeleteIcon()} className="delete-icon"/>
                        </span>
                    </p>
             </div>

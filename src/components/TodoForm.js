@@ -11,7 +11,7 @@ const TodoForm = ({todos, setTodos}) => {
 
     const handleInput = e => { 
         setCurrentTodo({
-            text:e.target.value, 
+            task:e.target.value, 
             id:Math.floor(Math.random() * 50000)
         }
     )};
@@ -19,16 +19,15 @@ const TodoForm = ({todos, setTodos}) => {
     const addTodo = e => { 
         e.preventDefault();
         const newTodo = currentTodo;
-        if(newTodo.text !== ""){
+        if(newTodo.task !== ""){
           const newTodos = [...todos, newTodo];
-          console.log(newTodos);
           axios.post(url,{
-            task:newTodo.text,
+            task:newTodo.task,
             id:newTodo.id
           });
           setTodos(newTodos);
           setCurrentTodo({
-                text:"",
+                task:"",
                 key:""
           })
         };
@@ -36,7 +35,7 @@ const TodoForm = ({todos, setTodos}) => {
 
     return ( 
         <form id = "todoForm" onSubmit = {addTodo}>
-            <input type = "text" placeholder = "Enter task ..." value = {currentTodo.text} onChange = {handleInput} />
+            <input type = "d" placeholder = "Enter task ..." value = {currentTodo.text} onChange = {handleInput} />
             <button type = "submit">Add</button>
         </form>
     )

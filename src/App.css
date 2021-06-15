@@ -1,5 +1,5 @@
 body{
-  background-color: #2f2fa2;
+  background-color: #ffffff;
 }
 
 .app{
@@ -31,7 +31,7 @@ body{
   height: 50px;
   width:70px;
   border-radius:5px;
-  background-color: #2f2fa2;
+  background-color: #8989e6;
   cursor:pointer;
   color: aliceblue;
 }
