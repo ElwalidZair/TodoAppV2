@@ -9,6 +9,7 @@ const App = () => {
       <div className = "app">
         <TodoList showModal = {showModal} setShowModal = {setShowModal} />
       </div>
+      
   );
   
 };

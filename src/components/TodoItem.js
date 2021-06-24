@@ -39,7 +39,9 @@ const TodoItem = ({todo, todos, setTodos,setShowModal, passTodo}) => {
                        />
                        <span>
                            <input type="checkbox" />
-                           <AiFillDelete onClick={() => onDeleteIcon()} className="delete-icon"/>
+                           <AiFillDelete onClick={() => onDeleteIcon()} 
+                                         className="delete-icon"
+                           />
                        </span>
                    </p>
             </div>
